@@ -10,7 +10,7 @@
 export PATH="/usr/local/bin:${PATH}"
 INTERFACES=$(ifconfig -lu)
 
-echo "▼ $(ifstat -n -w -i en0 0.1 1 | tail -n 1 | awk '{print $1, " - ", $2;}') ▲"
+echo "▼ $(ifstat -T -z -n -w 0.1 1 | tail -n 1 | awk '{print $(NF-1), " - ", $NF;}') ▲"
 echo "---"
 for INTERFACE in ${INTERFACES}; do
   if [[ ${INTERFACE} != "en0" ]]; then
